@@ -26,7 +26,7 @@ services:
   wordpress:
     image: wordpress:latest
     #container_name: "wordpress"
-    
+    restart: always
     depends_on:
       - db
     ports:
@@ -45,3 +45,22 @@ services:
       - db
     ports:
       - 8888:80
+
+  ftp:
+    image: stilliard/pure-ftpd
+    ports:
+      - 21:21
+      - 30000-30010:30000-30010
+    restart: always
+    network_mode: host
+    volumes: 
+      - ./contents/ftpserver:/home/user
+    environment:
+      PUBLICHOST: localhost
+      FTP_USER_NAME: *USER_NAME
+      FTP_USER_PASS: *USER_PASSWORD
+      FTP_USER_HOME: /home/user
+
+
+
+
