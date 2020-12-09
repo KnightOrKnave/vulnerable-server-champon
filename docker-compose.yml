@@ -49,18 +49,14 @@ services:
   ftp:
     image: stilliard/pure-ftpd
     ports:
-      - 21:21
-      - 30000-30010:30000-30010
+      - "21:21"
+      - "30000-30009:30000-30009"
     restart: always
-    network_mode: host
     volumes: 
-      - ./contents/ftpserver:/home/user
+      - "/contents/ftpserver:/home/user"
+      - "/folder_on_disk/passwd:/etc/pure-ftpd/passwd"
     environment:
-      PUBLICHOST: localhost
+      PUBLICHOST: "localhost"
       FTP_USER_NAME: *USER_NAME
       FTP_USER_PASS: *USER_PASSWORD
       FTP_USER_HOME: /home/user
-
-
-
-
