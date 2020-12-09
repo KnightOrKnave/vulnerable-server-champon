@@ -53,10 +53,32 @@ services:
       - "30000-30009:30000-30009"
     restart: always
     volumes: 
-      - "/contents/ftpserver:/home/user"
-      - "/folder_on_disk/passwd:/etc/pure-ftpd/passwd"
+      - "/contents/ftpserver/user:/home/user"
+      - "/contents/ftpserver/passwd:/etc/pure-ftpd/passwd"
     environment:
       PUBLICHOST: "localhost"
       FTP_USER_NAME: *USER_NAME
       FTP_USER_PASS: *USER_PASSWORD
       FTP_USER_HOME: /home/user
+
+  dns:
+    image: sameersbn/bind:9.16.1-20200524
+    ports:
+    - "53:53/udp"
+    - "53:53/tcp"
+    - "10000:10000/tcp"
+    restart: always
+    volumes:
+    - /contents/bind:/data
+    
+  dns2:
+    image: jpillora/dnsmasq
+    ports:
+    - "10053:53/udp"
+    - "5380:8080"
+    restart: always
+    volumes: 
+      - "./contents/dnsmasq/dnsmasq.conf:/etc/dnsmasq.conf"
+    environment:
+      HTTP_USER: *USER_NAME
+      HTTP_PASS: *USER_PASSWORD
