@@ -76,6 +76,19 @@ services:
       FTP_USER_PASS: *USER_PASSWORD
       FTP_USER_HOME: /home/user
 
+  #nginx with ssl
+  # soon
+
+#tool
+
+  jenkins:
+    image: jenkins:2.60.3-alpine
+    ports:
+      - 8080:8080
+      - 50000:50000
+
+#network
+
   dns:
     image: sameersbn/bind:9.16.1-20200524
     ports:
