@@ -84,8 +84,15 @@ services:
       - "3389:3389"
     restart: always
 
-  #nginx with ssl
-  # soon
+  nginx_ssl:
+    image: nginx
+    volumes:
+          - ./html:/usr/share/nginx/html:ro
+          - ./conf.d:/etc/nginx/conf.d
+          - ./nginx/conf/certs:/etc/nginx/certs
+    ports:
+      - 443:443
+    restart: always
 
 #tool
 
