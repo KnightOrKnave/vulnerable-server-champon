@@ -76,6 +76,13 @@ services:
       FTP_USER_PASS: *USER_PASSWORD
       FTP_USER_HOME: /home/user
 
+  ssh_rdp:
+    image: rosyuku/ubuntu-rd:0.1.1
+    ports:
+      - "22:22"
+      - "3389:3389"
+    restart: always
+
   #nginx with ssl
   # soon
 
