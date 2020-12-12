@@ -32,8 +32,9 @@ services:
       - "6379:6379"
 
   memcached:
+    image: memcached
     container_name: memcached
-    ports: 
+    ports:
       - 11211:11211
 
 
