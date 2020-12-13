@@ -33,7 +33,6 @@ services:
 
   memcached:
     image: memcached
-    container_name: memcached
     ports:
       - 11211:11211
 
@@ -78,7 +77,7 @@ services:
       FTP_USER_HOME: /home/user
 
   ssh_rdp:
-    image: rosyuku/ubuntu-rd:0.1.1
+    image: rosyuku/ubuntu-rdp
     ports:
       - "22:22"
       - "3389:3389"
